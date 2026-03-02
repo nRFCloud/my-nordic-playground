@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "verbatimModuleSyntax": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "react": ["./node_modules/preact/compat/"],
+      "react-dom": ["./node_modules/preact/compat/"],
+      "#components/*": ["./src/components/*"],
+      "#context/*": ["./src/context/*"],
+      "#myNordic/*": ["./src/myNordic/*"],
+      "#utils/*": ["./src/utils/*"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "pages/**/*",
+    "renderer/**/*",
+    "e2e-tests/**/*",
+    "cdk/**/*",
+    "aws/**/*",
+    "vite/**/*",
+    ".github/workflows/invalidate-cloudfront.ts",
+    "vite.config.ts",
+    "playwright.config.ts",
+    "playwright.prod.config.ts",
+    "checkly.config.ts",
+    "e2e-app/**/*"
+  ]
+}

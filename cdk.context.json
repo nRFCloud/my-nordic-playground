@@ -1,0 +1,12 @@
+{
+  "acknowledged-issue-numbers": [34892],
+  "@aws-cdk/customresources:installLatestAwsSdkDefault": false,
+  "hosted-zone:account=054037113426:domainName=id.nrfcloud.com:region=us-east-1": {
+    "Id": "/hostedzone/Z02005963M4VFZCBWN4DQ",
+    "Name": "id.nrfcloud.com."
+  },
+  "hosted-zone:account=054037113426:domainName=id.nrfcloud.com:region=eu-north-1": {
+    "Id": "/hostedzone/Z02005963M4VFZCBWN4DQ",
+    "Name": "id.nrfcloud.com."
+  }
+}

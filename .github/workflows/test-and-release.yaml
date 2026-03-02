@@ -1,0 +1,67 @@
+name: Test and Release
+
+on:
+  push:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  VERSION: ${{ github.sha }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24.x"
+          cache: "npm"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: npm ci --no-audit
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_RO }}
+
+      - name: Compile TypeScript
+        run: npx tsgo
+
+      - name: Check source code with eslint
+        run: npx eslint ./
+
+      - name: Check if source code is properly formatted
+        run: npx prettier -c ./
+
+      - name: Run tests
+        run: npm test
+
+      - name: Ensure it builds
+        run: |
+          npm run build
+          cp -L -r ./static ./build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: github-pages
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

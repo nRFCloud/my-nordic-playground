@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>bifravst/renovate-config"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": [
+        "mcr.microsoft.com/playwright",
+        "@playwright/test",
+        "playwright"
+      ],
+      "groupName": "playwright"
+    },
+    {
+      "matchPackagePatterns": ["@nrfcloud/*"],
+      "minimumReleaseAge": null
+    }
+  ]
+}
