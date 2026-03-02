@@ -1,5 +1,6 @@
 import { handleMyNordicRedirect } from '#myNordic/msalClient.ts'
 import { useEffect, useState } from 'preact/hooks'
+import { rootPath } from '../basePath.ts'
 import { Main } from './Main.tsx'
 
 type State =
@@ -14,11 +15,11 @@ export const AuthCallback = () => {
 		handleMyNordicRedirect()
 			.then((result) => {
 				if (result === null) {
-					window.location.pathname = '/'
+					window.location.pathname = rootPath
 					return
 				}
 				setState({ status: 'done' })
-				window.location.pathname = '/'
+				window.location.pathname = rootPath
 			})
 			.catch((err) => {
 				setState({
@@ -36,7 +37,7 @@ export const AuthCallback = () => {
 					<div class="alert alert-danger" role="alert">
 						{state.message}
 					</div>
-					<a href="/" class="btn btn-primary">
+					<a href={rootPath} class="btn btn-primary">
 						Back to login
 					</a>
 				</article>
