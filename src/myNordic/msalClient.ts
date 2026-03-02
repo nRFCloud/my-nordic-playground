@@ -43,6 +43,7 @@ export const handleMyNordicRedirect = async (): Promise<{
 
 	// Test for updating a user writable property.
 	console.log(
+		`[MyNordic] User properties before update:`,
 		JSON.stringify(
 			await getUserProperties(
 				res.userObjectId,
@@ -115,6 +116,11 @@ const msalResultToAuthUser = (
 	const idToken = result.idToken ?? result.account.idToken ?? ''
 	const userObjectId = result.account.localAccountId
 	const accessToken = result.accessToken
+
+	const claims = result.idTokenClaims ?? result.account.idTokenClaims
+
+	console.log(`[IdToken]`, idToken)
+	console.log(`[IdToken Claims]`, JSON.stringify(claims, null, 2))
 
 	return { idToken, userObjectId, accessToken }
 }
