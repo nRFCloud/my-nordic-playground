@@ -29,6 +29,7 @@ export const createConfig = ({
 	}
 
 	return defineConfig({
+		base: process.env.BASE_PATH ?? '/',
 		plugins: [
 			preact({
 				babel: {
