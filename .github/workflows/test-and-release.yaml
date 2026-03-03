@@ -50,6 +50,8 @@ jobs:
         run: |
           npm run build
           cp -L -r ./static ./build
+          mkdir -p ./build/auth/callback
+          cp ./build/index.html ./build/auth/callback/index.html
         env:
           BASE_PATH: /${{ github.event.repository.name }}/
 
