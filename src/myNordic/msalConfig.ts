@@ -8,7 +8,9 @@ const authority = MY_NORDIC_AUTHORITY.endsWith('/')
 const authorityHost = new URL(authority).hostname
 
 const authCallbackPath =
-	baseUrl === '/' ? '/auth/callback' : `${baseUrl}/auth/callback/`
+	baseUrl === '/' || baseUrl === ''
+		? '/auth/callback'
+		: `${baseUrl}/auth/callback/`
 
 export const getMsalConfig = (): Configuration => ({
 	auth: {
